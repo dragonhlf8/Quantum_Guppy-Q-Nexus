@@ -14,7 +14,7 @@
 #   - USE_FLAGS          (your original fixed version)
 #   - USE_CAT_QUBIT      (Alice & Bob cat-qubit parity stabilizer)
 #   - USE_ERASURE_QUBIT  (Dr. Maria Violaris dual-rail erasure qubit — detectable + locatable errors)
-# Old flag method is 100% kept and working. No errors.
+#   - Old flag method is 100% kept and working witouht Any errors.
 # =============================================================================
 
 import os
