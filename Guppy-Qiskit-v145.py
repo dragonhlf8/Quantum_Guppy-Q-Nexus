@@ -1,4 +1,4 @@
-#Hi i Realy apperciated you get me Some Donations here_ 1Bu4CR8Bi5AXQG8pnu1avny88C5CCgWKfb /////
+#Hi i Realy apperciated you get me A Donation here_ 1Bu4CR8Bi5AXQG8pnu1avny88C5CCgWKfb /////
 #============================================================================================
 #!/usr/bin/env python3
 # =============================================================================
