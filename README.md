@@ -1,3 +1,6 @@
+
+## This is A Quantum Probabilistic Code That will Reduce The KeySpace of BTC Puzzles : https://privatekeys.pw/puzzles/bitcoin-puzzle-tx
+
 Please Some Donations Please for my Next Quantum Project :
 
 1Bu4CR8Bi5AXQG8pnu1avny88C5CCgWKfb / 1NEJcwfcEm7Aax8oJNjRUnY3hEavCjNrai
@@ -8,15 +11,13 @@ USDT-TRON TQ1cxj8csRyWUzkonf5XgYUyFGsDJn1k7J
 
 USDT-BSC 0x3fa39005a6bb18d0e2546d97b24a767cc393b03a
 
-## This is A Quantum Probabilistic Code That will Reduce The KeySpace of BTC Puzzles : https://privatekeys.pw/puzzles/bitcoin-puzzle-tx
-
 TODO: The Next Project is To Reveal A Supirior Version That Will Use Probabilistic Algorithm of Pbits Jumps Will be Used to Reduce All the Puzzles of BTC given Rangs to 2.0 % Targeting Public-Addresses . 
 
 ---
 
 IQM API TOKEN EASY TO GET [https://github.com/threealgos/Quantum_KeySpace-Reducer/blob/main/IQM.png](https://raw.githubusercontent.com/threealgos/Quantum_KeySpace-Reducer/refs/heads/main/IQM.png)
 
-Sign Up For ibm Quantum Camputers : https://quantum.cloud.ibm.com/computers
+Sign Up For IBM Quantum Camputers : https://quantum.cloud.ibm.com/computers
 
 Get or Create Your IBM API TOKEN Here: https://cloud.ibm.com/iam/apikeys
 HERE IS THE RIGHT STEPS GUYS !!!! 
