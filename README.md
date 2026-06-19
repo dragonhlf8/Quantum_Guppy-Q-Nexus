@@ -1,5 +1,5 @@
 
-## This is A Quantum Probabilistic Code That will Reduce The KeySpace of BTC Puzzles : [https://privatekeys.pw/puzzles/bitcoin-puzzle-tx](https://btcpuzzle.info/puzzle)
+## This is A Quantum Probabilistic Code That will Reduce The KeySpace of BTC Puzzles : [https://btcpuzzle.info/puzzle](https://privatekeys.pw/puzzles/bitcoin-puzzle-tx?table=0&status=all)
 ________________________________________________________________
 
 Please Some Donations Please for my Next Quantum Project :
