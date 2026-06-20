@@ -76,24 +76,19 @@ from typing import Dict, List, Optional, Tuple
 # OUTPUT HYGIENE — runs BEFORE any third-party / hardware-SDK import
 # =============================================================================
 # Goal: the console only ever shows this script's own INFO logs and result
-# printouts. Every warning, deprecation notice, stack trace, or low-level
-# SDK/C-extension message — from NumPy, SciPy, Qiskit, Aer, pytket, IQM,
-# Qrisp, IBM Runtime, or the real QPU hardware itself — is suppressed at the
-# console. Nothing is lost: the full detail (including every traceback) is
-# always written to cache/key_reducer_iqm.log for debugging.
+# printouts, with library/hardware WARNING+ noise (Qiskit/Aer/pytket/IQM/
+# Qrisp/IBM Runtime deprecation notices, ProviderV1 chatter, etc.) kept out.
+# Full detail is still written to cache/key_reducer_iqm.log for debugging.
 #
-#   [1] warnings module — blanket-ignored, and the display hook itself is
-#       neutered so a library can't quietly re-enable its own warnings.
-#   [2] OS file-descriptor 2 (stderr) — redirected to os.devnull for the
-#       life of the process. This is the part that guarantees "100%":
-#       it catches output that bypasses Python's warnings/logging entirely
-#       (raw prints, C-extension/native hardware-client messages, thread
-#       tracebacks). stdout (fd 1) — where our own logs/prints go — is
-#       never touched. Briefly un-redirected only around CLI-arg parsing,
-#       so a genuine typo in your own command line still tells you why.
-#   [3] logging — a console handler that only ever passes INFO-and-below;
-#       WARNING/ERROR/CRITICAL records from any logger still get written
-#       to the log file, just not echoed to the terminal.
+# NOTE: an earlier version of this also redirected OS file-descriptor 2
+# (stderr) to os.devnull for the whole process. That was too aggressive —
+# it interfered with the terminal/kernel itself in real environments, so
+# it has been removed. Suppression here is Python-level only:
+#   [1] warnings module — blanket-ignored, display hook neutered.
+#   [2] logging — a console handler that passes this script's own
+#       "KeyReducerIQM" logger through at every level, but caps every
+#       OTHER (third-party) logger at INFO — their WARNING/ERROR/CRITICAL
+#       chatter is swallowed on console only, never in the log file.
 # =============================================================================
 
 warnings.simplefilter("ignore")
@@ -102,21 +97,6 @@ os.environ.setdefault("PYTHONWARNINGS", "ignore")
 
 CACHE_DIR = "cache/"
 os.makedirs(CACHE_DIR, exist_ok=True)
-
-_DEVNULL_FD     = os.open(os.devnull, os.O_WRONLY)
-_REAL_STDERR_FD = os.dup(2)
-os.dup2(_DEVNULL_FD, 2)   # stderr -> devnull for the whole run, from here on
-
-
-@contextlib.contextmanager
-def _stderr_visible():
-    """Briefly restore the real stderr — used only around argparse parsing
-    so genuine command-line usage errors are still reported to you."""
-    os.dup2(_REAL_STDERR_FD, 2)
-    try:
-        yield
-    finally:
-        os.dup2(_DEVNULL_FD, 2)
 
 
 import numpy as np
@@ -258,8 +238,16 @@ for _noisy_logger in [
 
 
 class _ConsoleInfoOnlyFilter(logging.Filter):
-    """Console handler: pass INFO/DEBUG through, swallow WARNING and above."""
+    """Console handler: this script's own logger ("KeyReducerIQM") always
+    shows in full, at every level — its WARNING/ERROR calls are genuine
+    user-facing feedback (bad pubkey format, key not in range, decompression
+    failed, etc.), not noise, and must never be hidden. Every OTHER logger
+    (Qiskit/Aer/pytket/IQM/Qrisp/IBM Runtime/NumPy/...) is capped at INFO —
+    their WARNING/ERROR/CRITICAL chatter is swallowed here on console only
+    (still fully recorded in the log file)."""
     def filter(self, record: logging.LogRecord) -> bool:
+        if record.name == "KeyReducerIQM":
+            return True
         return record.levelno < logging.WARNING
 
 
@@ -5109,8 +5097,7 @@ Tokens:  export IQM_TOKEN=...   export IBM_QUANTUM_TOKEN=...
                    help="Disable S2 full QPE phase")
     p.add_argument("--no-shor-s3",    action="store_true",
                    help="Disable S3 amplitude-estimation phase")
-    with _stderr_visible():
-        args = p.parse_args()
+    args = p.parse_args()
 
     if args.interactive or len(sys.argv) == 1:
         interactive_main(); return 0
