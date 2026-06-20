@@ -15,13 +15,13 @@ USDT-BSC 0x3fa39005a6bb18d0e2546d97b24a767cc393b03a
 
 ---
 
+Use IQM Quantum machines 54 Qubits For Testing Small Puzzles Right Here : https://Resonance.iqm.tech/Sign-up
+
 IQM API TOKEN EASY TO GET [https://github.com/threealgos/Quantum_KeySpace-Reducer/blob/main/IQM.png](https://raw.githubusercontent.com/threealgos/Quantum_KeySpace-Reducer/refs/heads/main/IQM.png)
 
 Sign Up For IBM Quantum Camputers : https://quantum.cloud.ibm.com/computers
 
 Get or Create Your IBM API TOKEN Here: https://cloud.ibm.com/iam/apikeys
-
-Use IQM Quantum machines 54 Qubits For Testing Small Puzzles Right Here : https://Resonance.iqm.tech/Sign-up
 
 GUYS HERE IS THE RIGHT STEPS  !!!! 
 
